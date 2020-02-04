@@ -44,7 +44,7 @@ export default class PersonalPosts extends React.Component {
     getUserPosts = async (userId) => {
         if (userId) {
             try {
-                const { data } = await axios.get(`http://localhost:3129/posts/userid/${userId}`)
+                const { data } = await axios.get(`https://suit-app.herokuapp.com/posts/userid/${userId}`)
                 this.setState({ userPosts: data.payload })
             } catch (err) {
                 handleNetworkErrors(err)
@@ -93,7 +93,7 @@ export default class PersonalPosts extends React.Component {
                 title: this.state.targetPostTitle,
                 caption: this.state.targetPostCaption,
             }
-            const { data } = await axios.patch(`http://localhost:3129/posts/edit/${postId}`, requestBody)
+            const { data } = await axios.patch(`https://suit-app.herokuapp.com/posts/edit/${postId}`, requestBody)
             if (data.status === 'success') {
                 this.getUserPosts(this.state.userId)
                 toast.success('✓',
@@ -119,7 +119,7 @@ export default class PersonalPosts extends React.Component {
                 password: pw,
                 currUserId: this.state.userId,
             }
-            const { data } = await axios.patch(`http://localhost:3129/posts/delete/${postId}`, user)
+            const { data } = await axios.patch(`https://suit-app.herokuapp.com/posts/delete/${postId}`, user)
             if (data.status === 'success') {
                 this.getUserPosts(this.state.userId)
                 this.setState({displayTargetPost: false})

@@ -30,8 +30,8 @@ export default class PersonalPosts extends React.PureComponent {
     getRelations = async (userId) => {
         try {
             const promises = []
-            promises.push(axios.get(`http://localhost:3129/follows/${userId}`)) // Following
-            promises.push(axios.get(`http://localhost:3129/follows/followers/${userId}`)) //     Followers
+            promises.push(axios.get(`https://suit-app.herokuapp.com/follows/${userId}`)) // Following
+            promises.push(axios.get(`https://suit-app.herokuapp.com/follows/followers/${userId}`)) //     Followers
 
             const response = await Promise.all(promises)
             const following = response[0].data.payload
@@ -68,7 +68,7 @@ export default class PersonalPosts extends React.PureComponent {
             const password = sessionStorage.getItem('Suit_App_KS')
             const userId = this.props.userId
 
-            const {data} = await axios.patch(`http://localhost:3129/follows/delete/${userId}/${targetId}`, {password: password})
+            const {data} = await axios.patch(`https://suit-app.herokuapp.com/follows/delete/${userId}/${targetId}`, {password: password})
             if (data.status === 'success') {
                 this.getRelations(userId)
             }
@@ -82,7 +82,7 @@ export default class PersonalPosts extends React.PureComponent {
             const password = sessionStorage.getItem('Suit_App_KS')
             const userId = this.props.userId
 
-            const {data} = await axios.post(`http://localhost:3129/follows/add/${userId}/${targetId}`, {password: password})
+            const {data} = await axios.post(`https://suit-app.herokuapp.com/follows/add/${userId}/${targetId}`, {password: password})
             if (data.status === 'success') {
                 this.getRelations(userId)
             }

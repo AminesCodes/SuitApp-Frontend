@@ -55,7 +55,7 @@ export default class CommentCard extends React.PureComponent {
                     userId: this.props.userId,
                     body: this.state.comment
                 }
-                const { data } = await axios.put(`http://localhost:3129/comments/${this.props.commentId}`, requestBody)
+                const { data } = await axios.put(`https://suit-app.herokuapp.com/comments/${this.props.commentId}`, requestBody)
                 console.log(data)
                 if (data.status === 'success') {
                     if (this.props.reloadComments) {
@@ -85,7 +85,7 @@ export default class CommentCard extends React.PureComponent {
                 password: pw,
                 userId: this.props.userId,
             }
-            const { data } = await axios.patch(`http://localhost:3129/comments/${this.props.commentId}/delete`, requestBody)
+            const { data } = await axios.patch(`https://suit-app.herokuapp.com/comments/${this.props.commentId}/delete`, requestBody)
             if (data.status === 'success') {
                 if (this.props.reloadComments) {
                     this.props.reloadComments(this.props.postId)

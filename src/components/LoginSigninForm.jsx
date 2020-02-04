@@ -46,7 +46,7 @@ export default class LoginSigninFrom extends React.PureComponent {
             }
             try {
                 this.setState({loading: true})
-                const { data } = await axios.patch('http://localhost:3129/users/login', user)
+                const { data } = await axios.patch('https://suit-app.herokuapp.com/users/login', user)
 
                 this.setState({ loading: false })
                 this.props.formSubmit(data.payload, this.state.password)
@@ -67,7 +67,7 @@ export default class LoginSigninFrom extends React.PureComponent {
             }
             try {
                 this.setState({loading: true})
-                const { data } = await axios.post('http://localhost:3129/users/signup', user)
+                const { data } = await axios.post('https://suit-app.herokuapp.com/users/signup', user)
 
                 this.setState({ loading: false })
                 this.props.formSubmit(data.payload, this.state.password)

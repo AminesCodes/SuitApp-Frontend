@@ -63,8 +63,8 @@ export default class PostCard extends Component {
 
   getCommentsAndReactions = async () => {
     const [ commentsResponse, reactionsResponse ] = await Promise.all([
-      await axios.get(`http://localhost:3129/comments/${this.props.postId}`),
-      await axios.get(`http://localhost:3129/reactions/post/all/${this.props.postId}`)
+      await axios.get(`https://suit-app.herokuapp.com/comments/${this.props.postId}`),
+      await axios.get(`https://suit-app.herokuapp.com/reactions/post/all/${this.props.postId}`)
     ]);
     const comments = commentsResponse.data.payload;
     const allReactions = reactionsResponse.data.payload;
@@ -85,7 +85,7 @@ export default class PostCard extends Component {
   handleLikeClick = async () => {
     try {
       if (!this.state.currUserLikeId) {
-        const url = `http://localhost:3129/reactions/add/post/${this.props.postId}`;
+        const url = `https://suit-app.herokuapp.com/reactions/add/post/${this.props.postId}`;
         const postBody = {
           password: this.pw,
           reactorId: this.uId + '',
@@ -94,7 +94,7 @@ export default class PostCard extends Component {
         const response = await axios.post(url, postBody);
         this.setState({ currUserLikeId: response.data.payload.id });
       } else {
-        const url = `http://localhost:3129/reactions/delete/${this.state.currUserLikeId}`;
+        const url = `https://suit-app.herokuapp.com/reactions/delete/${this.state.currUserLikeId}`;
         const postBody = {
           password: this.pw,
           reactorId: this.uId + ''

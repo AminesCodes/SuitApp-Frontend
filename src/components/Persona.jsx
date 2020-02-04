@@ -53,7 +53,7 @@ export default class Persona extends Component {
   getUserInfo = async (url) => {
     try {
       const targetUser = url.split('/')[1]
-      const {data} = await axios.get(`http://localhost:3129/users/${targetUser}`)  //GET THE USER INFO
+      const {data} = await axios.get(`https://suit-app.herokuapp.com/users/${targetUser}`)  //GET THE USER INFO
       this.setState({
         userId: data.payload.id,
         username: data.payload.username,
@@ -62,11 +62,11 @@ export default class Persona extends Component {
       })
 
       const promises = []
-      promises.push(axios.get(`http://localhost:3129/follows/followers/${data.payload.id}`))
+      promises.push(axios.get(`https://suit-app.herokuapp.com/follows/followers/${data.payload.id}`))
       
       const currentUserId = sessionStorage.getItem('Suit_App_UId')
       const currentUsername = sessionStorage.getItem('Suit_App_Un')
-      promises.push(axios.get(`http://localhost:3129/follows/${currentUserId}`))
+      promises.push(axios.get(`https://suit-app.herokuapp.com/follows/${currentUserId}`))
 
       const [ allFollowersData, allCurrentUserFollowingsData ] = await Promise.all(promises)
 
@@ -128,7 +128,7 @@ export default class Persona extends Component {
     const targetUserId = this.state.userId
 
     try {
-      const { data } = await axios.post(`http://localhost:3129/follows/add/${currentUserId}/${targetUserId}`, {password: pw})
+      const { data } = await axios.post(`https://suit-app.herokuapp.com/follows/add/${currentUserId}/${targetUserId}`, {password: pw})
       if (data.status === 'success') {
         this.setState({ isUserFollowing: true })
       }

@@ -44,8 +44,8 @@ export default class PostLightBox extends React.PureComponent {
         try {
             const promises = []
     
-            promises.push(axios.get(`http://localhost:3129/comments/${postId}`))
-            // promises.push(axios.get(`http://localhost:3129/reactions/${postId}`))
+            promises.push(axios.get(`https://suit-app.herokuapp.com/comments/${postId}`))
+            // promises.push(axios.get(`https://suit-app.herokuapp.com/reactions/${postId}`))
     
             const response = await Promise.all(promises)
             this.setState({
@@ -78,7 +78,7 @@ export default class PostLightBox extends React.PureComponent {
                 password: pw,
                 body: this.state.newComment,
             }
-            const { data } = await axios.post(`http://localhost:3129/comments/${this.props.postId}/${uId}`, requestBody)
+            const { data } = await axios.post(`https://suit-app.herokuapp.com/comments/${this.props.postId}/${uId}`, requestBody)
             if (data.status === 'success') {
                 this.getAllCommentsAndReactions(this.props.postId)
                 this.setState({newComment: ''})

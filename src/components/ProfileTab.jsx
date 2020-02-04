@@ -30,8 +30,8 @@ export default class ProfileTab extends React.PureComponent {
         this.props.handleTabSelection(1)
         try {
             const promises = []
-            promises.push(axios.get(`http://localhost:3129/follows/${this.props.userId}`)) // Followers
-            promises.push(axios.get(`http://localhost:3129/follows/followers/${this.props.userId}`)) //     Following
+            promises.push(axios.get(`https://suit-app.herokuapp.com/follows/${this.props.userId}`)) // Followers
+            promises.push(axios.get(`https://suit-app.herokuapp.com/follows/followers/${this.props.userId}`)) //     Following
 
             const response = await Promise.all(promises)
             this.setState({

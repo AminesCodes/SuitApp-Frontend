@@ -18,7 +18,7 @@ export default class Events extends PureComponent {
   }
 
   async componentDidMount() {
-    let url = 'http://localhost:3129/events/'; 
+    let url = 'https://suit-app.herokuapp.com/events/'; 
     const response = await axios.get(url);
     const eventsArray = response.data.payload;
     this.setState({

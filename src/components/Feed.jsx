@@ -43,7 +43,7 @@ export default class Feed extends PureComponent {
   }
 
   getFeed = async () => {
-    let url = 'http://localhost:3129/posts/';             // location parse begins at global feed
+    let url = 'https://suit-app.herokuapp.com/posts/';             // location parse begins at global feed
     const pathname = this.props.location.pathname;
     const searchString = this.getSearches();
     if (!pathname.includes("all")) {                      // switch to follows feed

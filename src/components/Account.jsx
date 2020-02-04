@@ -58,7 +58,7 @@ export default class Account extends React.PureComponent {
 
         if (username !== 'undefined') {
             try {
-                const { data } = await axios.get(`http://localhost:3129/users/${username}`)
+                const { data } = await axios.get(`https://suit-app.herokuapp.com/users/${username}`)
                 this.setState({
                     id: data.payload.id,
                     username: data.payload.username,
@@ -134,7 +134,7 @@ export default class Account extends React.PureComponent {
                     userInfo.append('avatar', this.state.avatarFile)
                 }
 
-                const { data } = await axios.put(`http://localhost:3129/users/${id}`, userInfo)
+                const { data } = await axios.put(`https://suit-app.herokuapp.com/users/${id}`, userInfo)
                 this.setState({
                     username: data.payload.username,
                     firstName: data.payload.firstname,
@@ -170,7 +170,7 @@ export default class Account extends React.PureComponent {
                     confirmedPassword: newPasswordConfirmation, 
                 }
 
-                const { data } = await axios.patch(`http://localhost:3129/users/${id}/password`, updateData)
+                const { data } = await axios.patch(`https://suit-app.herokuapp.com/users/${id}/password`, updateData)
                 this.setState({ 
                     waitingForData: false,
                     oldPassword: '', 
@@ -205,7 +205,7 @@ export default class Account extends React.PureComponent {
         //             confirmedPassword: newPasswordConfirmation, 
         //         }
 
-        //         const { data } = await axios.patch(`http://localhost:3129/users/${id}/password`, updateData)
+        //         const { data } = await axios.patch(`https://suit-app.herokuapp.com/users/${id}/password`, updateData)
         //         if (data.status === 'success') {
         //             sessionStorage.setItem('Suit_App_KS', newPassword);
         //             toast.success('Password updated successfully ',
@@ -268,7 +268,7 @@ export default class Account extends React.PureComponent {
         if (this.state.password && this.state.id) {
             try {
                 this.setState({ waitingForData: true })
-                await axios.patch(`http://localhost:3129/users/${this.state.id}/delete`, {password: this.state.password})
+                await axios.patch(`https://suit-app.herokuapp.com/users/${this.state.id}/delete`, {password: this.state.password})
                 this.setState(this.initialState)
                 this.props.logout()
             } catch (err) {

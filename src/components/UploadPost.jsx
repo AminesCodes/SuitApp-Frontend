@@ -76,7 +76,7 @@ export default class UploadPost extends React.PureComponent{
             post.append('caption', this.state.caption)
             
             try {
-                const { data } = await axios.post(`http://localhost:3129/posts/add`, post)
+                const { data } = await axios.post(`https://suit-app.herokuapp.com/posts/add`, post)
                 if (data.status === 'success') {
                     this.setState({
                         userId: this.props.userId,
